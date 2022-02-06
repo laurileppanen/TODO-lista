@@ -13,16 +13,14 @@ class App extends Component {
   }
 
 
-  updateInput(key, value){
+  paivitaInput(key, value){
     this.setState({
       [key]: value
     });
-    console.log(key);
-    console.log(value);
-    console.log(this.state.list);
+  
   }
 
-  addItem(){
+  lisaaListaan(){
     const newItem={
       id: 1 + Math.random(),
       value: this.state.newItem.slice()
@@ -41,7 +39,7 @@ class App extends Component {
     });
   }  
 
-  deleteItem(id){
+  poistaListasta(id){
     const list = [...this.state.list];
 
     const updatedList = list.filter(item => item.id !== id);
@@ -49,13 +47,13 @@ class App extends Component {
     this.setState({list: updatedList});
   }
 
-  clearList = () => {
+  tyhjennaLista = () => {
     this.setState({
       list: []
     });
   }
 
-  ascOrder = () => {
+  aakkosJarjestys = () => {
     const list = [...this.state.list];
     const updatedList = list.sort((a,b) => (a.value>b.value) ?1: ((b.value>a.value)? -1:0));
     this.setState({list: updatedList});
@@ -68,15 +66,15 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          Add an Item...
+          TODO-lista
           <br/>
           <input
             type ="text"
-            placeholder = "Type item here..."
+            placeholder = "Lisää uusi tehtävä..."
             value={this.state.newItem}
-            onChange={e => this.updateInput("newItem", e.target.value)}
+            onChange={e => this.paivitaInput("newItem", e.target.value)}
           />
-          <button onClick={() => this.addItem()}> Add </button>
+          <button onClick={() => this.lisaaListaan()}> + </button>
 
 
           <br/>
@@ -85,7 +83,7 @@ class App extends Component {
               return(
                 <li key={item.id}>
                   {item.value}
-                  <button onClick={() => this.deleteItem(item.id)} >
+                  <button onClick={() => this.poistaListasta.Listasta(item.id)} >
                   X  
                   </button>
                   <input type="checkbox"/>
@@ -99,8 +97,8 @@ class App extends Component {
           </ul>
         </div>
 
-        <button onClick={() => this.clearList()}> Tyhjennä </button>
-        <button onClick={() => this.ascOrder()}> Lajittele A-Ö </button>
+        <button onClick={() => this.tyhjennaLista()}> Poista kaikki </button>
+        <button onClick={() => this.aakkosJarjestys()}> Lajittele A-Ö </button>
 
       </div>
     );
