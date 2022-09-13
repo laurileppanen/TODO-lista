@@ -83,7 +83,7 @@ class App extends Component {
               return(
                 <li key={item.id}>
                   {item.value}
-                  <button onClick={() => this.poistaListasta.Listasta(item.id)} >
+                  <button onClick={() => this.poistaListasta(item.id)} >
                   X  
                   </button>
                   <input type="checkbox"/>
